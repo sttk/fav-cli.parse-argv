@@ -1,0 +1,51 @@
+{
+  "name": "@fav/cli.parse-argv",
+  "version": "0.0.0",
+  "description": "Parses command line arguments.",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "test": "mocha test test/in-default test/by-configs",
+    "coverage": "nyc --reporter=lcov --reporter=text-summary npm test",
+    "coveralls": "nyc --reporter=text-lcov npm test | coveralls",
+    "build": "npm run lint && npm run coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sttk/fav-cli.parse-argv.git"
+  },
+  "keywords": [
+    "argv",
+    "parse",
+    "option",
+    "cli",
+    "fav"
+  ],
+  "author": "Takayuki Sato",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sttk/fav-cli.parse-argv/issues"
+  },
+  "homepage": "https://github.com/sttk/fav-cli.parse-argv#readme",
+  "devDependencies": {
+    "@fav/prop.assign-deep": "^1.0.0",
+    "chai": "^3.5.0",
+    "coveralls": "^3.0.0",
+    "eslint": "^4.8.0",
+    "mocha": "^3.5.3",
+    "nyc": "^11.2.1"
+  },
+  "dependencies": {
+    "@fav/prop.assign": "^1.0.1",
+    "@fav/prop.enum-own-keys": "^1.0.0",
+    "@fav/text.camel-case": "^1.0.1",
+    "@fav/text.kebab-case": "^1.0.1",
+    "@fav/type.is-array": "^1.0.1",
+    "@fav/type.is-function": "^1.0.1",
+    "@fav/type.is-string": "^1.0.1",
+    "@fav/type.to-number": "^1.0.0"
+  }
+}
