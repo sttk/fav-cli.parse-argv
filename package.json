@@ -1,6 +1,6 @@
 {
   "name": "@fav/cli.parse-argv",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Parses command line arguments.",
   "main": "index.js",
   "files": [
