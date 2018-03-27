@@ -151,7 +151,12 @@ describe('lib/parse-by-configs/result-factory', function() {
     });
 
     it('Should do nothing even if config.coerce is specified', function() {
-      var config = { type: 'boolean', coerce: function(v) { return false; } };
+      var config = {
+        type: 'boolean',
+        coerce: function() {
+          return false;
+        },
+      };
       expect(factory.configureValue.boolean('abc', config))
         .to.equal(true);
       expect(factory.configureValue.boolean('abc', config, true))
@@ -163,7 +168,9 @@ describe('lib/parse-by-configs/result-factory', function() {
       expect(factory.configureValue.boolean('abc', config, 123))
         .to.equal(true);
 
-      config.coerce = function(v) { return true; };
+      config.coerce = function() {
+        return true;
+      };
       expect(factory.configureValue.boolean('abc', config, false))
         .to.equal(false);
     });
@@ -406,8 +413,6 @@ describe('lib/parse-by-configs/result-factory', function() {
 
     it('Should normalize values', function() {
       var config = { normalize: true };
-      var result = factory.create();
-
       expect(factory.configureValue.string('abc', config, 'aaa/bbb/..'))
         .to.equal('aaa');
     });
@@ -465,7 +470,12 @@ describe('lib/parse-by-configs/result-factory', function() {
     });
 
     it('Should do nothing even if config.coerce is specified', function() {
-      var config = { type: 'count', coerce: function(v) { return false; } };
+      var config = {
+        type: 'count',
+        coerce: function() {
+          return false;
+        },
+      };
       expect(factory.configureValue.count('abc', config))
         .to.equal(undefined);
       expect(factory.configureValue.count('abc', config, true))
@@ -759,7 +769,7 @@ describe('lib/parse-by-configs/result-factory', function() {
       expect(factory.addTypedOption.array(result, config, ['abc']))
         .to.equal(1);
       expect(result.options).to.deep.equal({
-        a: ['abc'], bcDeFg: ['abc'], hi: ['abc'] 
+        a: ['abc'], bcDeFg: ['abc'], hi: ['abc']
       });
     });
 
@@ -769,21 +779,21 @@ describe('lib/parse-by-configs/result-factory', function() {
       expect(factory.addTypedOption.array(result, config, ['abc', 'def']))
         .to.equal(2);
       expect(result.options).to.deep.equal({
-        a: ['abc', 'def'], bcDeFg: ['abc', 'def'], hi: ['abc', 'def'] 
+        a: ['abc', 'def'], bcDeFg: ['abc', 'def'], hi: ['abc', 'def']
       });
       expect(factory.addTypedOption.array(result, config, ['gh', 'ij']))
         .to.equal(2);
       expect(result.options).to.deep.equal({
         a: ['abc', 'def', 'gh', 'ij'],
         bcDeFg: ['abc', 'def', 'gh', 'ij'],
-        hi: ['abc', 'def', 'gh', 'ij'] 
+        hi: ['abc', 'def', 'gh', 'ij']
       });
       expect(factory.addTypedOption.array(result, config, []))
         .to.equal(0);
       expect(result.options).to.deep.equal({
         a: ['abc', 'def', 'gh', 'ij'],
         bcDeFg: ['abc', 'def', 'gh', 'ij'],
-        hi: ['abc', 'def', 'gh', 'ij'] 
+        hi: ['abc', 'def', 'gh', 'ij']
       });
     });
 
@@ -794,19 +804,19 @@ describe('lib/parse-by-configs/result-factory', function() {
       expect(factory.addTypedOption.array(result, config, ['abc']))
         .to.equal(1);
       expect(result.options).to.deep.equal({
-        a: ['abc'], bcDeFg: ['abc'], hi: ['abc'] 
+        a: ['abc'], bcDeFg: ['abc'], hi: ['abc']
       });
       expect(factory.addTypedOption.array(result, config, ['def']))
         .to.equal(1);
       expect(result.options).to.deep.equal({
-        a: ['abc', 'def'], bcDeFg: ['abc', 'def'], hi: ['abc', 'def'] 
+        a: ['abc', 'def'], bcDeFg: ['abc', 'def'], hi: ['abc', 'def']
       });
 
       result.options.a = 'AAA';
       expect(factory.addTypedOption.array(result, config, ['BBB']))
         .to.equal(1);
       expect(result.options).to.deep.equal({
-        a: ['AAA', 'BBB'], bcDeFg: ['AAA', 'BBB'], hi: ['AAA', 'BBB'] 
+        a: ['AAA', 'BBB'], bcDeFg: ['AAA', 'BBB'], hi: ['AAA', 'BBB']
       });
     });
   });
