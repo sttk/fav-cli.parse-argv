@@ -4,7 +4,8 @@
   "description": "Parses command line arguments.",
   "main": "index.js",
   "files": [
-    "index.js"
+    "index.js",
+    "lib"
   ],
   "scripts": {
     "lint": "eslint .",
