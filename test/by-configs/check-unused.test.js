@@ -65,7 +65,7 @@ describe('lib/parse-by-configs/check-unused', function() {
         ab: 'ABC', a: 'ABC', b: 'ABC',
         cd: undefined, c: undefined, d: undefined,
         e: 0,
-        f: [], 
+        f: [],
       },
     };
     checkUnused(result, configs.default);
