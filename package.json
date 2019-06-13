@@ -35,9 +35,9 @@
     "@fav/prop.assign-deep": "^1.0.0",
     "chai": "^3.5.0",
     "coveralls": "^3.0.0",
-    "eslint": "^4.8.0",
+    "eslint": "^5.16.0",
     "mocha": "^3.5.3",
-    "nyc": "^11.2.1"
+    "nyc": "^14.1.1"
   },
   "dependencies": {
     "@fav/prop.assign": "^1.0.1",
