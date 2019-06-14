@@ -68,7 +68,7 @@ Short options can be concatenated to an option string (like `-abc` instead of `-
 
 If a long option can be converted to a camel case string which is different from an original option string, this function sets both an original option and a camel case option (e.g. `--abc-def` is parsed into `'abc-def'=true, abcDef=true`).
 
-#### Parsing in default
+#### Parsing with no config
 
 If a parameter *configs* is not specified, this function parses command line arguments in default way. In default, all control-codes, marks, and numbers in ASCII characters are ignored as short options.
 
@@ -98,42 +98,39 @@ The formats of long options are as follows:
 | --*sss*-*sss* -*nnn*  | number     | { options: { '*sss*-*sss*': -*nnn*, sssSss: -*nnn*, ...}, args: [...] } |
 | --*sss*-*sss* *sss*  | string     | { options: { '*sss*-*sss*': '*sss*', sssSss: '*sss*', ...}, args: [...] } |
 
-#### Parsing by configurations
+#### Parsing with configs
 
-If a parameter *configs* is specified, this function parss command line arguments according with a configuration in *configs* corresponding to each specified option.
+If a parameter *configs* is specified, this function parses command line arguments according with a configuration in *configs* corresponding to each specified option.
 
-Even if an option is followed by a normal argument, but if the `.type` property of the configuration for the option, the value of the option is `true`.
-On the other hand, if an option is not followed by a normal argument (and is not equation format), and if `.type` property of a configuraton is `string` or `number`, then this function throws an error.
+Even if an option is followed by a normal argument but if the `.type` property of the configuration for the option, the value of the option is `true`.
+On the other hand, if an option is not followed by a normal argument (and is not equation format), and if `.type` property of a configuraton is `string` or `number`, then the value of the option is `''` or `NaN`.
 
-When a value of an option cannot be converted to the specified type or specified choices in *configs*, this function throws an error. The message of the error is a [specific JSON format](#error_message) string.
+When a value of an option cannot be converted to the specified type or specified choices in *configs*, this function throws an error. See [Error](#error) section.
 
-##### List of configuration keys
+##### List of configurations
 
-This function can configure parsing by a configuration object which can have the following keys. These keys are a subset of valid keys of [yargs][yargs-url]'s option. (But the behaiors are not entirely same with it.)
+This function can parse with a configuration object which can have the following options. These options are similar with [yargs][yargs-url]'s options, but the behaiors are not entirely same with it.
 
 * `alias` [string | Array] : sets alias option name(s).
 * `choices` [*any* | Array] : limits valid values of the option.
 * `coerce` [function] : provides a synchronous function to coerce or transform the value(s) of the option.
 * `default` [*any*] : sets a default value of the option if the option was not specified.
 * `demandOption` [boolean] : demands that the option is given.
-* `normalize` [boolean] : applys `path.normalize()` to the option.
-* `requiresArg` [boolean] : requires that the option is specified with a value,
+* `requiresArg` [boolean] : requires that the option is specified with a value.
+* `array` [boolean] : if true, the option has its value as an array.
 * `type` [string] : specifys the type of the option from following choices:
-    * `'array'` : interprets the option as an array, even if the option was specified single value.
     * `'boolean'` : interprets the option as a boolean flag.
     * `'count'` : interprets the option as a count of boolean flags.
     * `'number'` : interprets the option as a number.
     * `'string'` : interprets the option as a string.
 
-If `type` is `'array'`, the normal arguments following the option are all interpreted as elements of the option until appearance of the next option argument. The data type of elements is boolean if the option value is not specified, or number if the option value can be converted to a number, otherwise string.
+`choices` and `requiresArg` is available only when `type` is `'number'` and `'string'`. 
 
-If `type` is `'boolean'`, this function sets `true` if the option was specified, otherwise `false` unless `default` is not explicitly specified.
+<a name="error"></a>
 
-`choices`, `coerce` and `requiresArg` is available only when `type` is `'array'`, `'number'` and `'string'`. 
+##### Error
 
-##### Parsing error message <a name="error_message"></a>
-
-If this function failed to parse, it throws an error of which message is a JSON string. An object parsed back from the JSON string always has the following keys, and has more keys according to the error.
+If this function failed to parse, it throws an error which has properties: `.option` and `.reason`. 
 
 * `option` [string] : is the option name.
 * `reason` [string] : is the reason of the parsing error.
@@ -172,13 +169,13 @@ If this function failed to parse, it throws an error of which message is a JSON 
 
 ## License
 
-Copyright (C) 2018 Takayuki Sato
+Copyright (C) 2018-2019 Takayuki Sato
 
 This program is free software under [MIT][mit-url] License.
 See the file LICENSE in this distribution for more details.
 
 [repo-url]: https://github.com/sttk/fav-cli.parse-argv/
-[npm-img]: https://img.shields.io/badge/npm-v0.1.1-blue.svg
+[npm-img]: https://img.shields.io/badge/npm-v0.2.0-blue.svg
 [npm-url]: https://www.npmjs.com/package/@fav/cli.parse-argv
 [mit-img]: https://img.shields.io/badge/license-MIT-green.svg
 [mit-url]: https://opensource.org/licenses/MIT

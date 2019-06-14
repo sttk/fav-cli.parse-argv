@@ -9,10 +9,9 @@
   ],
   "scripts": {
     "lint": "eslint .",
-    "test": "mocha test test/in-default test/by-configs",
+    "test": "mocha test/*.test.js test/*/*.test.js",
     "coverage": "nyc --reporter=lcov --reporter=text-summary npm test",
-    "coveralls": "nyc --reporter=text-lcov npm test | coveralls",
-    "build": "npm run lint && npm run coverage"
+    "coveralls": "nyc --reporter=text-lcov npm test | coveralls"
   },
   "repository": {
     "type": "git",
@@ -35,16 +34,18 @@
     "@fav/prop.assign-deep": "^1.0.0",
     "chai": "^3.5.0",
     "coveralls": "^3.0.0",
-    "eslint": "^5.16.0",
+    "eslint": "^6.0.1",
     "mocha": "^3.5.3",
     "nyc": "^14.1.1"
   },
   "dependencies": {
     "@fav/prop.assign": "^1.0.1",
+    "@fav/prop.define": "^1.0.0",
     "@fav/prop.enum-own-keys": "^1.0.0",
     "@fav/text.camel-case": "^1.0.1",
     "@fav/text.kebab-case": "^1.0.1",
     "@fav/type.is-array": "^1.0.1",
+    "@fav/type.is-finite-number": "^1.0.2",
     "@fav/type.is-function": "^1.0.1",
     "@fav/type.is-string": "^1.0.1",
     "@fav/type.to-number": "^1.0.0"

@@ -1,10 +1,12 @@
 'use strict';
 var parseArgv = require('../..');
 var result = parseArgv([
-  'foo', '-aB123', '--cde-fgh', 'ijk',
+  'foo',
+  '--log-level',
+  '--port', '80', '-h', 'www.domain.com',
 ], {
-  bar: { type: 'boolean', alias: 'a' },
-  cdeFgh: { type: 'array', alias: ['c'] },
-  lmnOpq: { type: 'count' },
+  host: { type: 'stirng', alias: ['h'] },
+  port: { type: 'number', alias: ['p'] },
+  'log-level': { type: 'count', alias: 'L' },
 });
 console.log(JSON.stringify(result));

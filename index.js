@@ -1,18 +1,14 @@
 'use strict';
 
 var isArray = require('@fav/type.is-array');
-var parseInDefault = require('./lib/parse-in-default');
-var parseByConfigs = require('./lib/parse-by-configs');
+var parse = require('./lib');
 
-function parse(argv, configs) {
+function parseArgv(argv, configs) {
   if (!isArray(argv)) {
     configs = argv;
     argv = process.argv.slice(2);
   }
-
-  return Boolean(configs) ? parseByConfigs(argv, configs) :
-         parseInDefault(argv);
+  return parse(argv, configs);
 }
 
-module.exports = parse;
-
+module.exports = parseArgv;
