@@ -141,14 +141,21 @@ If this function failed to parse, it throws an error which has properties: `.opt
 
 
 ## Checked                                                                      
+### Node.js (11〜12)
 
-### Node.js (4〜9)
+| Platform  |   11   |   12   |
+|:---------:|:------:|:------:|
+| macOS     |&#x25ef;|&#x25ef;|
+| Windows10 |&#x25ef;|&#x25ef;|
+| Linux     |&#x25ef;|&#x25ef;|
 
-| Platform  |   4    |   5    |   6    |   7    |   8    |   9    |
-|:---------:|:------:|:------:|:------:|:------:|:------:|:------:|
-| macOS     |&#x25ef;|&#x25ef;|&#x25ef;|&#x25ef;|&#x25ef;|&#x25ef;|
-| Windows10 |&#x25ef;|&#x25ef;|&#x25ef;|&#x25ef;|&#x25ef;|&#x25ef;|
-| Linux     |&#x25ef;|&#x25ef;|&#x25ef;|&#x25ef;|&#x25ef;|&#x25ef;|
+### Node.js (4〜10)
+
+| Platform  |   4    |   5    |   6    |   7    |   8    |   9    |   11   |
+|:---------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
+| macOS     |&#x25ef;|&#x25ef;|&#x25ef;|&#x25ef;|&#x25ef;|&#x25ef;|&#x25ef;|
+| Windows10 |&#x25ef;|&#x25ef;|&#x25ef;|&#x25ef;|&#x25ef;|&#x25ef;|&#x25ef;|
+| Linux     |&#x25ef;|&#x25ef;|&#x25ef;|&#x25ef;|&#x25ef;|&#x25ef;|&#x25ef;|
 
 ### io.js (1〜3)
 
